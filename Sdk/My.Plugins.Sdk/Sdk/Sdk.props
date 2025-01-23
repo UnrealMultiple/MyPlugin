@@ -8,14 +8,14 @@
 	
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<BaseOutputPath>$(SolutionDir)out\$(TShockVersion)</BaseOutputPath>
+		<BaseOutputPath>$(SolutionDir)out</BaseOutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 	</PropertyGroup>
 	
 	<ItemGroup>
 		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p" />
-		<PackageReference Include="TShock" Version="$(TShockVersion)">
+		<PackageReference Include="UnrealMultiple.TShock.Temp" Version="$(TShockVersion)">
 			<ExcludeAssets>contentFiles</ExcludeAssets>
 		</PackageReference>
 	</ItemGroup>

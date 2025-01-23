@@ -1,5 +1,8 @@
-﻿<Project Sdk="My.Plugins.Sdk">
-	<PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+
+<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.props"/>
+
+<PropertyGroup>
 		<OutToPluginLoader>true</OutToPluginLoader>
 	</PropertyGroup>
 	<ItemGroup>
@@ -37,4 +40,5 @@
 			<Private>false</Private>
 		</ProjectReference>
 	</ItemGroup>
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.targets"/>
 </Project>
