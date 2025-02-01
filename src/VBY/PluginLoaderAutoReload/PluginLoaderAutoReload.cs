@@ -14,11 +14,6 @@ public class PluginLoaderAutoReload : TerrariaPlugin
         EnableRaisingEvents = true
     };
     public static System.Timers.Timer Timer = new(1500) { AutoReset = false };
-    static PluginLoaderAutoReload()
-    {
-        Timer.Elapsed += OnElapsed;
-        Watcher.Changed += OnChanged;
-    }
 
     public PluginLoaderAutoReload(Main game) : base(game)
     {
@@ -27,7 +22,8 @@ public class PluginLoaderAutoReload : TerrariaPlugin
 
     public override void Initialize()
     {
-        
+        Timer.Elapsed += OnElapsed;
+        Watcher.Changed += OnChanged;
     }
     protected override void Dispose(bool disposing)
     {
