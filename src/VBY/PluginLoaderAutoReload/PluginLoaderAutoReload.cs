@@ -5,7 +5,7 @@ namespace VBY.PluginLoaderAutoReload;
 [ApiVersion(2, 1)]
 public class PluginLoaderAutoReload : TerrariaPlugin
 {
-    public override string Name => nameof(PluginLoaderAutoReload);
+    public override string Name => "VBY.PluginLoaderAutoReload";
     public override string Description => "检测PluginLoader文件夹更改后自动重载";
     public static FileSystemWatcher Watcher = new("PluginLoader")
     {
