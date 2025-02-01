@@ -4,6 +4,7 @@
 	
 	<PropertyGroup>
 		<OutToPluginLoader>true</OutToPluginLoader>
+		<Version>1.1.1.0</Version>
 	</PropertyGroup>
 	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.targets"/>
 </Project>
