@@ -15,7 +15,7 @@
 	
 	<ItemGroup>
 		<NuGetAuditSuppress Include="https://github.com/advisories/GHSA-6qmf-mmc7-6c2p" />
-		<PackageReference Include="UnrealMultiple.TShock.Temp" Version="$(TShockVersion)">
+		<PackageReference Include="TShock" Version="$(TShockVersion)">
 			<ExcludeAssets>contentFiles</ExcludeAssets>
 		</PackageReference>
 	</ItemGroup>
