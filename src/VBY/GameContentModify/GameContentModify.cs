@@ -4,14 +4,13 @@ using System.Reflection;
 using System.Text;
 
 using Microsoft.Xna.Framework;
-
+using MonoMod.RuntimeDetour.HookGen;
 using MonoMod.RuntimeDetour;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using Terraria;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 
 using TerrariaApi.Server;
@@ -49,6 +48,7 @@ public partial class GameContentModify : CommonPlugin
                 if (ReplaceMain.TownNPCIDIndexMap.TryGetValue(type, out var index))
                 {
                     list.Add(index);
+                    
                 }
                 else
                 {
@@ -94,8 +94,8 @@ public partial class GameContentModify : CommonPlugin
         }
     });
 #pragma warning restore format
-    private static readonly List<Detour> Detours = new();
-    internal static readonly ReadOnlyDictionary<string, Detour> NamedDetours = new(new Dictionary<string, Detour>()
+    private static readonly List<Hook> Detours = new();
+    internal static readonly ReadOnlyDictionary<string, Hook> NamedDetours = new(new Dictionary<string, Hook>()
     {
         { DetourNames.Item_CheckLavaDeath, Utils.GetDetour(ReplaceItem.CheckLavaDeath) },
         { DetourNames.Item_MechSpawn, Utils.GetDetour(ReplaceItem.MechSpawn) },

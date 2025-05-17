@@ -42,20 +42,20 @@ internal static class Utils
             chest.item[i] = new Item();
         }
     }
-    public static Detour GetNameDetour(Type targetMethodDeclaringType, Delegate replaceMethod, bool manualApply = true) => new Detour(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name), replaceMethod.Method, new DetourConfig() { ManualApply = manualApply });
-    public static Detour GetNameDetour(Type targetMethodDeclaringType, MethodInfo replaceMethod, bool manualApply = true) => new Detour(targetMethodDeclaringType.GetMethod(replaceMethod.Name), replaceMethod, new DetourConfig() { ManualApply = manualApply });
-    public static Detour GetDetour(Delegate method, bool manualApply = true)
+    public static Hook GetNameDetour(Type targetMethodDeclaringType, Delegate replaceMethod, bool manualApply = true) => new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name), replaceMethod.Method);
+    public static Hook GetNameDetour(Type targetMethodDeclaringType, MethodInfo replaceMethod, bool manualApply = true) => new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Name), replaceMethod);
+    public static Hook GetDetour(Delegate method, bool manualApply = true)
     {
         return GetNameDetour(method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type, method, manualApply);
     }
-    public static Detour GetParamDetour(Delegate method, bool manualApply = true)
+    public static Hook GetParamDetour(Delegate method, bool manualApply = true)
     {
         var methodType = method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type;
-        return new Detour(methodType.GetMethod(method.Method.Name, method.Method.GetParameters().Select(x => x.ParameterType).ToArray()), method.Method, new DetourConfig() { ManualApply = manualApply });
+        return new Hook(methodType.GetMethod(method.Method.Name, method.Method.GetParameters().Select(x => x.ParameterType).ToArray())!, method.Method);
     }
-    public static Detour GetParamDetour(Type targetMethodDeclaringType, MethodInfo method, bool manualApply = true)
+    public static Hook GetParamDetour(Type targetMethodDeclaringType, MethodInfo method, bool manualApply = true)
     {
-        return new Detour(targetMethodDeclaringType.GetMethod(method.Name, method.GetParameters().Select(x => x.ParameterType).ToArray()), method, new DetourConfig() { ManualApply = manualApply });
+        return new Hook(targetMethodDeclaringType.GetMethod(method.Name, method.GetParameters().Select(x => x.ParameterType).ToArray())!, method);
     }
     public static void Deconstruct(this Chest chest, out int x, out int y)
     {
