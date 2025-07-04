@@ -42,8 +42,8 @@ internal static class Utils
             chest.item[i] = new Item();
         }
     }
-    public static Hook GetNameDetour(Type targetMethodDeclaringType, Delegate replaceMethod, bool manualApply = true) => new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name), replaceMethod.Method);
-    public static Hook GetNameDetour(Type targetMethodDeclaringType, MethodInfo replaceMethod, bool manualApply = true) => new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Name), replaceMethod);
+    public static Hook GetNameDetour(Type targetMethodDeclaringType, Delegate replaceMethod, bool manualApply = true) => new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name)!, replaceMethod.Method);
+    public static Hook GetNameDetour(Type targetMethodDeclaringType, MethodInfo replaceMethod, bool manualApply = true) => new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Name)!, replaceMethod);
     public static Hook GetDetour(Delegate method, bool manualApply = true)
     {
         return GetNameDetour(method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type, method, manualApply);

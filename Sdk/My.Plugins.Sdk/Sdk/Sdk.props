@@ -1,8 +1,8 @@
 <Project>
 	
-	<PropertyGroup>
-		<BaseIntermediateOutputPath>$(SolutionDir)obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
-	</PropertyGroup>
+<!--	<PropertyGroup>-->
+<!--		<BaseIntermediateOutputPath>$(SolutionDir)obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>-->
+<!--	</PropertyGroup>-->
 	
 	<Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 	

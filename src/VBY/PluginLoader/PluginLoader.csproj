@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project>
 
 	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.props"/>
-	
 	<PropertyGroup>
+		<Version>1.0.0.1</Version>
 		<UsingCommon>false</UsingCommon>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
