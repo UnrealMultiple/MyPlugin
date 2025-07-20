@@ -45,26 +45,26 @@ internal static class Utils
 
     public static Hook GetNameHook(Type targetMethodDeclaringType, Delegate replaceMethod, bool manualApply = true)
     {
-        return new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name), replaceMethod.Method, new HookConfig() { ManualApply = manualApply });
+        return new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name)!, replaceMethod.Method, !manualApply);
     }
 
     public static Hook GetNameHook(Type targetMethodDeclaringType, MethodInfo replaceMethod, bool manualApply = true)
     {
-        return new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Name), replaceMethod, new HookConfig() { ManualApply = manualApply });
+        return new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Name)!, replaceMethod, !manualApply);
     }
 
     public static Hook GetHook(Delegate method, bool manualApply = true)
     {
-        return GetNameHook(method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type, method, manualApply);
+        return GetNameHook(method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type, method, !manualApply);
     }
     public static Hook GetParamHook(Delegate method, bool manualApply = true)
     {
         var methodType = method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type;
-        return new Hook(methodType.GetMethod(method.Method.Name, method.Method.GetParameters().Select(x => x.ParameterType).Skip(1).ToArray()), method.Method, new HookConfig() { ManualApply = manualApply });
+        return new Hook(methodType.GetMethod(method.Method.Name, method.Method.GetParameters().Select(x => x.ParameterType).Skip(1).ToArray())!, method.Method, !manualApply);
     }
     public static Hook GetParamHook(Type targetMethodDeclaringType, MethodInfo method, bool manualApply = true)
     {
-        return new Hook(targetMethodDeclaringType.GetMethod(method.Name, method.GetParameters().Select(x => x.ParameterType).Skip(1).ToArray()), method, new HookConfig() { ManualApply = manualApply });
+        return new Hook(targetMethodDeclaringType.GetMethod(method.Name, method.GetParameters().Select(x => x.ParameterType).Skip(1).ToArray())!, method, !manualApply);
     }
     public static void Deconstruct(this Chest chest, out int x, out int y)
     {
@@ -253,7 +253,7 @@ internal static class Utils
         }
     }
     public static bool NamedActionHookIsRegistered(string actionHookName) => GameContentModify.NamedActionHooks[actionHookName].Registered;
-    public static T[] MakeArray<T>(this T item) where T : class => new T[1] { item };
+    public static T[] MakeArray<T>(this T item) where T : class => [item];
     public static bool MembersValueAllEqualDefault(object target, params string[] names)
     {
         var type = target.GetType();
