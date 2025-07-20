@@ -5,7 +5,7 @@ namespace VBY.PluginLoaderAutoReload;
 [ApiVersion(2, 1)]
 public class PluginLoaderAutoReload : TerrariaPlugin
 {
-    public override string Name => nameof(PluginLoaderAutoReload);
+    public override string Name => "VBY.PluginLoaderAutoReload";
     public override string Description => "检测PluginLoader文件夹更改后自动重载";
     public static FileSystemWatcher Watcher = new("PluginLoader")
     {
@@ -14,11 +14,6 @@ public class PluginLoaderAutoReload : TerrariaPlugin
         EnableRaisingEvents = true
     };
     public static System.Timers.Timer Timer = new(1500) { AutoReset = false };
-    static PluginLoaderAutoReload()
-    {
-        Timer.Elapsed += OnElapsed;
-        Watcher.Changed += OnChanged;
-    }
 
     public PluginLoaderAutoReload(Main game) : base(game)
     {
@@ -27,7 +22,8 @@ public class PluginLoaderAutoReload : TerrariaPlugin
 
     public override void Initialize()
     {
-        
+        Timer.Elapsed += OnElapsed;
+        Watcher.Changed += OnChanged;
     }
     protected override void Dispose(bool disposing)
     {

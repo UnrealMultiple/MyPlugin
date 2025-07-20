@@ -42,6 +42,7 @@ internal static class Utils
             chest.item[i] = new Item();
         }
     }
+
     public static Hook GetNameHook(Type targetMethodDeclaringType, Delegate replaceMethod, bool manualApply = true)
     {
         return new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name), replaceMethod.Method, new HookConfig() { ManualApply = manualApply });

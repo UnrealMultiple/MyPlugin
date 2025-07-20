@@ -4,14 +4,13 @@ using System.Reflection;
 using System.Text;
 
 using Microsoft.Xna.Framework;
-
+using MonoMod.RuntimeDetour.HookGen;
 using MonoMod.RuntimeDetour;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using Terraria;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 
 using TerrariaApi.Server;
@@ -49,6 +48,7 @@ public partial class GameContentModify : CommonPlugin
                 if (ReplaceMain.TownNPCIDIndexMap.TryGetValue(type, out var index))
                 {
                     list.Add(index);
+                    
                 }
                 else
                 {
