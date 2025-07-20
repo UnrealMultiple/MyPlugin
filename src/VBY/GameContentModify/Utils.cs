@@ -42,20 +42,29 @@ internal static class Utils
             chest.item[i] = new Item();
         }
     }
-    public static Hook GetNameDetour(Type targetMethodDeclaringType, Delegate replaceMethod, bool manualApply = true) => new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name)!, replaceMethod.Method);
-    public static Hook GetNameDetour(Type targetMethodDeclaringType, MethodInfo replaceMethod, bool manualApply = true) => new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Name)!, replaceMethod);
-    public static Hook GetDetour(Delegate method, bool manualApply = true)
+
+    public static Hook GetNameHook(Type targetMethodDeclaringType, Delegate replaceMethod, bool manualApply = true)
     {
-        return GetNameDetour(method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type, method, manualApply);
+        return new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Method.Name), replaceMethod.Method, new HookConfig() { ManualApply = manualApply });
     }
-    public static Hook GetParamDetour(Delegate method, bool manualApply = true)
+
+    public static Hook GetNameHook(Type targetMethodDeclaringType, MethodInfo replaceMethod, bool manualApply = true)
+    {
+        return new Hook(targetMethodDeclaringType.GetMethod(replaceMethod.Name), replaceMethod, new HookConfig() { ManualApply = manualApply });
+    }
+
+    public static Hook GetHook(Delegate method, bool manualApply = true)
+    {
+        return GetNameHook(method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type, method, manualApply);
+    }
+    public static Hook GetParamHook(Delegate method, bool manualApply = true)
     {
         var methodType = method.Method.DeclaringType!.GetCustomAttribute<ReplaceTypeAttribute>()!.Type;
-        return new Hook(methodType.GetMethod(method.Method.Name, method.Method.GetParameters().Select(x => x.ParameterType).ToArray())!, method.Method);
+        return new Hook(methodType.GetMethod(method.Method.Name, method.Method.GetParameters().Select(x => x.ParameterType).Skip(1).ToArray()), method.Method, new HookConfig() { ManualApply = manualApply });
     }
-    public static Hook GetParamDetour(Type targetMethodDeclaringType, MethodInfo method, bool manualApply = true)
+    public static Hook GetParamHook(Type targetMethodDeclaringType, MethodInfo method, bool manualApply = true)
     {
-        return new Hook(targetMethodDeclaringType.GetMethod(method.Name, method.GetParameters().Select(x => x.ParameterType).ToArray())!, method);
+        return new Hook(targetMethodDeclaringType.GetMethod(method.Name, method.GetParameters().Select(x => x.ParameterType).Skip(1).ToArray()), method, new HookConfig() { ManualApply = manualApply });
     }
     public static void Deconstruct(this Chest chest, out int x, out int y)
     {
@@ -205,30 +214,30 @@ internal static class Utils
             {
                 foreach (string detourName in detourNames)
                 {
-                    GameContentModify.NamedDetours[detourName].Apply();
+                    GameContentModify.NamedHooks[detourName].Apply();
                 }
             }
             else
             {
                 foreach (string detourName in detourNames)
                 {
-                    GameContentModify.NamedDetours[detourName].Undo();
+                    GameContentModify.NamedHooks[detourName].Undo();
                 }
             }
             field = value;
         }
     }
-    public static void HandleNamedDetour(bool value, params string[] detourNames)
+    public static void HandleNamedHook(bool value, params string[] detourNames)
     {
         foreach (var detourName in detourNames)
         {
             if (value)
             {
-                GameContentModify.NamedDetours[detourName].Apply();
+                GameContentModify.NamedHooks[detourName].Apply();
             }
             else
             {
-                GameContentModify.NamedDetours[detourName].Undo();
+                GameContentModify.NamedHooks[detourName].Undo();
             }
         }
     }
