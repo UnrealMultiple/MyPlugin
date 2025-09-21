@@ -3,6 +3,7 @@
 <Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.props"/>
 
 <PropertyGroup>
+    <UsingCommon>false</UsingCommon>
 		<OutToPluginLoader>true</OutToPluginLoader>
 	</PropertyGroup>
 	<ItemGroup>
