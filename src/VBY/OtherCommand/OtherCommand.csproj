@@ -1,5 +1,10 @@
-﻿<Project Sdk="My.Plugins.Sdk">
+﻿<Project>
+
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.props"/>
+	
 	<PropertyGroup>
 		<OutToPluginLoader>true</OutToPluginLoader>
+		<Version>1.1.1.1</Version>
 	</PropertyGroup>
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.targets"/>
 </Project>
