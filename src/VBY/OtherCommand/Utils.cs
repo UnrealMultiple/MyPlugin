@@ -143,12 +143,6 @@ internal static partial class Utils
         }
         return new string(chars, 0, newIndex);
     }
-    public static void ExpressionWriteLine(object obj, [CallerArgumentExpression(nameof(obj))] string expression = "")
-    {
-        Console.Write(expression);
-        Console.Write(':');
-        Console.WriteLine(obj);
-    }
     public static T GetNext<T>(this ref List<T>.Enumerator enumerator)
     {
         if (!enumerator.MoveNext())

@@ -137,7 +137,7 @@ public class FixedLengthPacketWriter : IPacketWriter
         Unsafe.WriteUnaligned(ref data[position + 4], value.Y);
         position += 8;
     }
-    public unsafe void WriteRGB(in Color value)
+    public void WriteRGB(in Color value)
     {
         Unsafe.CopyBlockUnaligned(ref data[position], ref Unsafe.As<uint, byte>(ref Unsafe.AsRef(in value).packedValue), 3);
         position += 3;

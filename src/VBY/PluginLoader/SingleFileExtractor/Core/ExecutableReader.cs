@@ -1,6 +1,6 @@
 ﻿using System.IO.MemoryMappedFiles;
-using SingleFileExtractor.Core.Exceptions;
 using SingleFileExtractor.Core.Helpers;
+using VBY.PluginLoader.SingleFileExtractor.Core.Exceptions;
 
 namespace SingleFileExtractor.Core;
 

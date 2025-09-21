@@ -252,7 +252,7 @@ internal static class Utils
         }
     }
     public static bool NamedActionHookIsRegistered(string actionHookName) => GameContentModify.NamedActionHooks[actionHookName].Registered;
-    public static T[] MakeArray<T>(this T item) where T : class => new T[1] { item };
+    public static T[] MakeArray<T>(this T item) where T : class => [item];
     public static bool MembersValueAllEqualDefault(object target, params string[] names)
     {
         var type = target.GetType();

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SingleFileExtractor.Core.Exceptions;
+namespace VBY.PluginLoader.SingleFileExtractor.Core.Exceptions;
 
 public class UnsupportedExecutableException : Exception
 {
@@ -17,7 +17,8 @@ public class UnsupportedExecutableException : Exception
         : base(message, innerException)
     {
     }
-
+    
+    [Obsolete("Obsolete")]
     protected UnsupportedExecutableException(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {

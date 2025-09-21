@@ -1,6 +1,9 @@
-﻿<Project Sdk="My.Plugins.Sdk">
+﻿<Project>
+
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.props"/>
+	
   <PropertyGroup>
-		<Version>1.10.1.0</Version>
+    <Version>1.11.2.0</Version>
     <OutToPluginLoader>true</OutToPluginLoader>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	  <LangVersion>12.0</LangVersion>
@@ -15,4 +18,5 @@
 	<ItemGroup>
 		<SharedCodeReference Include="StringExtensions" />
 	</ItemGroup>
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.targets"/>
 </Project>
