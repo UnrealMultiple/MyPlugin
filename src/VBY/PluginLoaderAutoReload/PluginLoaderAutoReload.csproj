@@ -1,5 +1,12 @@
-<Project Sdk="My.Plugins.Sdk">
+<Project>
+
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.props"/>
+	<PropertyGroup>
+		<Version>1.0.0.1</Version>
+	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\PluginLoader\PluginLoader.csproj" />
+		<ProjectReference Include="..\PluginLoader\PluginLoader.csproj" />
 	</ItemGroup>
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.targets"/>
+
 </Project>

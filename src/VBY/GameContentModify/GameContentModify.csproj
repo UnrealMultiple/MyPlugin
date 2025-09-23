@@ -1,4 +1,7 @@
-﻿<Project Sdk="My.Plugins.Sdk">
+﻿<Project>
+
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.props"/>
+	
   <PropertyGroup>
 		<Version>1.11.3.0</Version>
     <OutToPluginLoader>true</OutToPluginLoader>
@@ -21,4 +24,5 @@
 	<ItemGroup>
 		<SharedCodeReference Include="StringExtensions" />
 	</ItemGroup>
+	<Import Project="..\..\..\Sdk\My.Plugins.Sdk\Sdk\Sdk.targets"/>
 </Project>
